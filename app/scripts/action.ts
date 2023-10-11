@@ -11,7 +11,7 @@ export type FormState = {
     data: null;
 };
 
-export async function fetchData(state: FormState, formData: FormData): Promise<FormState> {
+export async function fetchData(_: FormState, formData: FormData): Promise<FormState> {
     try {
         const url = formData.get("url")?.toString();
         if (!url) return { error: "No URL provided", data: null };

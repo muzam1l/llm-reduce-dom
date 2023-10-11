@@ -1,6 +1,6 @@
 # Html DOM reducer for LLM's
 
-[Demo](TODO)
+[Demo](https://llm-reduce-dom.vercel.app/)
 
 The process involves reducing HTML content into straightforward JSON objects, mapped according to specific roles. Non-visual elements are intentionally excluded to facilitate comprehension by language models. The resulting output takes the form of either strings or adheres to the following simple interface:
 

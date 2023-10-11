@@ -9,19 +9,17 @@ export const Spinner = () => {
       </div>
       <style>{`
         .spinner {
-          display: inline-block;
           position: relative;
-          width: 80px;
-          height: 80px;
+          width: 22px;
+          height: 22px;
         }
         .spinner div {
           box-sizing: border-box;
           display: block;
           position: absolute;
-          width: 64px;
-          height: 64px;
-          margin: 8px;
-          border: 8px solid #fcf;
+          width: 100%;
+          height: 100%;
+          border: 2px solid #fcf;
           border-radius: 50%;
           animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
           border-color: #fcf transparent transparent transparent;

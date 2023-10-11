@@ -8,8 +8,10 @@ type ButtonProps = {
 
 export const Button: FC<ButtonProps> = ({ children, loading }) => {
   return (
-    <button type="submit" className="button">
-      {loading ? <Spinner /> : children}
-    </button>
+    <>
+      <button type="submit" className="button">
+        {loading ? <Spinner /> : children}
+      </button>
+    </>
   );
 };

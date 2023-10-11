@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 // @ts-ignore
 import { experimental_useFormState as useFormState } from "react-dom";
 import useClipboard from "react-use-clipboard";
@@ -30,24 +30,42 @@ export const View: FC = () => {
   const [isCopied, setCopied] = useClipboard(data || "null", {
     successDuration: 2000,
   });
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (state.data || state.error) setLoading(false);
+  }, [state]);
 
   return (
-    <form action={formAction}>
-      <input
-        required
-        defaultValue="https://github.com/muzam1l"
-        name="url"
-        type="url"
-        placeholder="Paste the page link."
-        className="search"
-        autoComplete="off"
-        autoCorrect="off"
-        autoCapitalize="off"
-        spellCheck="false"
-      />
-      <Button type="submit">Submit</Button>
+    <form
+      action={formAction}
+      onSubmit={e => {
+        setLoading(true);
+        if (loading) {
+          e.preventDefault();
+          return;
+        }
+      }}
+    >
+      <div className="flex row center">
+        <input
+          required
+          defaultValue="https://github.com/muzam1l"
+          name="url"
+          type="url"
+          placeholder="Paste the page link."
+          className="search"
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
+        />
+        <Button loading={loading} type="submit">
+          Submit
+        </Button>
+      </div>
       <pre>
-        {state.error && <div className="error center">{state.error}</div>}
+        {state.error && <div className="error flex center">{state.error}</div>}
 
         {data && (
           <div>
