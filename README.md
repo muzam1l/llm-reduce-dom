@@ -1,6 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Html DOM reducer for LLM's
 
-## Getting Started
+[Demo](TODO)
+
+The process involves reducing HTML content into straightforward JSON objects, mapped according to specific roles. Non-visual elements are intentionally excluded to facilitate comprehension by language models. The resulting output takes the form of either strings or adheres to the following simple interface:
+
+```typescript
+type SimplifiedElement = {
+    role: string;
+    text?: string;
+    children?: SimplifiedElement[];
+};
+```
+
+Elements are removed based on criteria such as aria roles, data attributes, or element types. Additionally, the output tree is further simplified by flattening single-child elements and eliminating non-textual components.
+
+## Building
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It uses the new App router, Server Components and those new React goodies!
+
+It fetches the page html in NextJS Server Actions and sends the client to process. Client uses the `DomParser` to parse the html and then recursively processes the elements into the simplified tree.
 
 First, run the development server:
 
