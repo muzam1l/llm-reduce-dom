@@ -30,6 +30,9 @@ export const View: FC = () => {
   const [isCopied, setCopied] = useClipboard(data || "null", {
     successDuration: 2000,
   });
+  const [isCopiedMin, setCopiedMin] = useClipboard(JSON.stringify(JSON.parse(data || "null")), {
+    successDuration: 2000,
+  });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -68,8 +71,10 @@ export const View: FC = () => {
         {state.error && <div className="error flex center">{state.error}</div>}
 
         {data && (
-          <div>
+          <div className="flex row">
             <button onClick={setCopied}>{isCopied ? "copied!" : "copy to clipboard"}</button>
+            <hr />
+            <button onClick={setCopiedMin}>{isCopiedMin ? "copied!" : "copy minified"}</button>
           </div>
         )}
         {data}
