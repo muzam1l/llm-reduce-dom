@@ -1,4 +1,4 @@
-# Html DOM reducer for LLM's
+# HTML DOM reducer for LLM's
 
 [Demo](https://llm-reduce-dom.vercel.app/)
 

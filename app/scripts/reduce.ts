@@ -33,6 +33,13 @@ export const simplifyElement = (element: Node): SimplifiedElement | undefined =>
         return element.getAttribute("aria-label") || undefined
     }
 
+    if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+        return {
+            role: 'input',
+            text: element.value || element.placeholder || undefined,
+        }
+    }
+
     const role = element.getAttribute("aria-role") || element.getAttribute("role") || element.tagName.toLowerCase()
     let children: SimplifiedElement[] = [];
     for (let node of element.childNodes) {
@@ -62,6 +69,13 @@ const hiddenTags = ['script', 'svg', 'style', 'meta', 'head', 'noscript', 'ifram
 export const shouldBeVisible = (node: Node): node is Element | Text => {
     if (!(node instanceof Element) && !(node instanceof Text)) {
         return false
+    }
+
+    if (node instanceof HTMLInputElement || node instanceof HTMLTextAreaElement) {
+        if (node.type === "hidden") {
+            return false
+        }
+        return true
     }
 
     if (!node.textContent?.trim()) {
