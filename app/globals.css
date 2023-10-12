@@ -92,6 +92,7 @@ pre {
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
+  word-break: keep-all;
   box-shadow: 0px 4px 30px #eaeef2;
   display: flex;
   justify-content: center;
